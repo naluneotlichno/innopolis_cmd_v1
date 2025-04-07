@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  tg-bot:
+    build:
+      context: . # текущая директория, где лежит Dockerfile
+    container_name: tg-bot
+    env_file:
+      - .env
+    volumes:
+      - ./media:/app/media # если боту нужны медиафайлы
+    ports:
+      - "42:42"
+    restart: unless-stopped
+    command: ./main
