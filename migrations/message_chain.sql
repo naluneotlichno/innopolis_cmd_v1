@@ -1,5 +1,6 @@
 CREATE TABLE users ( -- Создаём таблицу с пользователями
     id INT PRIMARY KEY AUTO_INCREMENT, -- ID пользователя
+    username VARCHAR(20) NOT NULL,
     first_name VARCHAR(20) NOT NULL, -- Имя
     last_name VARCHAR(20) NOT NULL, -- И фамилия, возможно так будет удобнее
     created_at DATETIME NOT NULL DEFAULT NOW() -- время создания пользователя
