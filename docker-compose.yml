@@ -3,13 +3,35 @@ version: "3.9"
 services:
   tg-bot:
     build:
-      context: . # текущая директория, где лежит Dockerfile
+      context: .
     container_name: tg-bot
     env_file:
       - .env
     volumes:
-      - ./media:/app/media # если боту нужны медиафайлы
+      - ./media:/app/media
     ports:
       - "42:42"
     restart: unless-stopped
     command: ./main
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      PG_USER: postgres_user
+      PG_PASSWORD: postgres_password
+      PG_DB: postgres_db
+      PG_DATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres_user -d postgres_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:
+    driver: local
