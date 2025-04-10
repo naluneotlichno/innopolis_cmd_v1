@@ -1,3 +1,3 @@
-module chain-service/cmd/chain-service
+module innopolis
 
 go 1.24.0
