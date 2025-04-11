@@ -10,7 +10,7 @@ services:
     volumes:
       - ./media:/app/media
     ports:
-      - "42:42"
+      - "8080:8080"
     restart: unless-stopped
     command: ./main
 
@@ -32,6 +32,23 @@ services:
       timeout: 5s
       retries: 10
 
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000" # S3 API
+      - "9001:9001" # Web UI
+    volumes:
+      - minio_data:/data
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    env_file:
+      - .env
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+
 volumes:
   pgdata:
     driver: local
+  minio_data:
