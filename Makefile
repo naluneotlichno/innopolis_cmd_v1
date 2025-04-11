@@ -1,10 +1,12 @@
-.PHONY: lint lint-setup migrate build build-docker run-local test test-mocks
+.PHONY: lint lint-setup migrate build build-docker run-local test test-mockss
 
+# Проверка линтером
 lint:
-	golangci-lint run ./...
+	@echo "Start linters..."
+	@golangci-lint run ./... && echo "All linters have run successfully"
 
 lint-setup:
-	chmod +x install-linter.sh && ./install-linter.sh
+	chmod +x ../install-linter.sh && ../install-linter.sh
 
 migrate:
 
