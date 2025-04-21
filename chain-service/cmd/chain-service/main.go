@@ -4,22 +4,28 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
-	"github.com/szaluzhanskaya/Innopolis/chain-service/config"
+	"os"
 
 	//"github.com/go-delve/delve/pkg/config"
 	"github.com/joho/godotenv"
+	"github.com/szaluzhanskaya/Innopolis/chain-service/config"
 	v1 "github.com/szaluzhanskaya/Innopolis/chain-service/internal/controller/http"
 )
 
 func main() {
 	// загрузка значений из .env
 	if err := godotenv.Load(); err != nil {
-		log.Fatal("файл .env не найден")
+		log.Fatalf("Ошибка загрузки .env файла: %v", err)
+	}
+
+	// получаем значение переменной APP_ENVIRONMENT
+	env := os.Getenv("APP_ENVIRONMENT")
+	if env == "" {
+		env = "local"
 	}
 
 	// загрузка кофнигурации
-	cfg, err := config.LoadConfig()
+	cfg, err := config.LoadConfig(env)
 	if err != nil {
 		log.Fatal("ошибка загрузки конфигурации", err)
 	}
@@ -31,6 +37,6 @@ func main() {
 
 	// Starts the HTTP server on the port:8080
 	fmt.Println("Starting server on :8080...")
-	log.Fatal(http.ListenAndServe(":"+cfg.Port, nil))
+	log.Fatal(http.ListenAndServe(":"+cfg.AppConfig.Port, nil))
 
 }
