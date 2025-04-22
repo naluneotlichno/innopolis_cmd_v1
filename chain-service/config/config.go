@@ -1,39 +1,55 @@
 package config
 
 import (
-	"os"
+	"fmt"
+
+	"github.com/spf13/viper"
 )
 
+// конфигурация логов
 type LogConfig struct {
-	Style string
-	Level string
+	Style string `mapstructure:"style"`
+	Level string `mapstructure:"level"`
+	File  string `mapstructure:"file"`
 }
 
+// конфигурация бд
 type PostgresConfig struct {
-	Username string
-	Password string
-	Port     string
+	Username string `mapstructure:"username"`
+	Password string `mapstructure:"password"`
+	Port     int    `mapstructure:"port"`
+	Host     string `mapstructure:"host"`
+	DBname   string `mapstructure:"dbname"`
+}
+
+// конфигурация приложения
+type AppConfig struct {
+	Name        string `mapstructure:"name"`
+	Environment string `mapstructure:"environment"`
+	Port        string `mapstructure:"port"`
+	Debug       bool   `mapstructure:"debug"`
 }
 
 type Config struct {
-	Logs LogConfig
-	DB   PostgresConfig
-	Port string
+	Logs      LogConfig      `mapstructure:"log"`
+	DB        PostgresConfig `mapstructure:"postgres"`
+	AppConfig AppConfig      `mapstructure:"app"`
 }
 
 // LoadConfig - функция для загрузки конфигурации из файла
-func LoadConfig() (*Config, error) {
-	cfg := &Config{
-		Port: os.Getenv("PORT"),
-		Logs: LogConfig{
-			Style: os.Getenv("LOG_STYLE"), // содержит стиль вывода логов
-			Level: os.Getenv("LOG_LEVEL"), // содержит тэг классификации логов
-		},
-		DB: PostgresConfig{
-			Username: os.Getenv("PG_USER"),
-			Password: os.Getenv("PG_PASSWORD"),
-			Port:     os.Getenv("PG_PORT"),
-		},
+func LoadConfig(env string) (*Config, error) {
+	viper.SetConfigName("config." + env) // добавляет к имени значение переменной APP_ENVIRONMENT из .env
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath(".")
+
+	var cfg Config
+	if err := viper.ReadInConfig(); err != nil {
+		return nil, fmt.Errorf("ошибка чтения файла конфигурации: %w", err)
 	}
-	return cfg, nil
+
+	if err := viper.Unmarshal(&cfg); err != nil {
+		return nil, fmt.Errorf("ошибка при анмаршалинге файла конфигурации %w", err)
+	}
+
+	return &cfg, nil
 }

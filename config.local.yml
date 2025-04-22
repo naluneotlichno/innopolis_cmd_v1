@@ -1,0 +1,17 @@
+app:
+  name: "innopolis"
+  environment: "local"
+  port: "8080" 
+  debug: true
+
+log:
+  level: "debug"
+  style: "yaml" # формат логов - yaml
+  file: "" #test укажите путь к файлу для хранения логов
+
+postgres:
+  host: "localhost"
+  port: "5432"
+  user: "username"
+  password: "user_password"
+  dbname: "db_name"
