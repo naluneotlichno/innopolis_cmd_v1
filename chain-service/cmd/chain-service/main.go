@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	v1 "github.com/szaluzhanskaya/Innopolis/chain-service/internal/controller/http"
+	v1 "github.com/szaluzhanskaya/Innopolis/chain-service/internal/controller/http"	
 )
 
 func main() {
