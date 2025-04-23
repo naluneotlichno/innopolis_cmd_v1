@@ -1,0 +1,17 @@
+app:
+  name: "innopolis"
+  environment: "prod"
+  port: "" #test
+  debug: false
+
+log:
+  level: "info"
+  style: "yaml" # формат логов - yaml
+  file: "" #test укажите путь к файлу для хранения логов
+
+postgres:
+  host: "prod-db-host"
+  port: "" #test
+  user: "username"
+  password: "user_password"
+  dbname: "db_name"
