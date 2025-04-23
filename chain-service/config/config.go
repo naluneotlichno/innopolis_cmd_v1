@@ -8,32 +8,32 @@ import (
 
 // конфигурация логов
 type LogConfig struct {
-	Style string `mapstructure:"style"`
-	Level string `mapstructure:"level"`
-	File  string `mapstructure:"file"`
+	Style string `yaml:"style"`
+	Level string `yaml:"level"`
+	File  string `yaml:"file"`
 }
 
 // конфигурация бд
 type PostgresConfig struct {
-	Username string `mapstructure:"username"`
-	Password string `mapstructure:"password"`
-	Port     int    `mapstructure:"port"`
-	Host     string `mapstructure:"host"`
-	DBname   string `mapstructure:"dbname"`
+	Username string `yaml:"username"`
+	Password string `yaml:"password"`
+	Port     int    `yaml:"port"`
+	Host     string `yaml:"host"`
+	DBname   string `yaml:"dbname"`
 }
 
 // конфигурация приложения
 type AppConfig struct {
-	Name        string `mapstructure:"name"`
-	Environment string `mapstructure:"environment"`
-	Port        string `mapstructure:"port"`
-	Debug       bool   `mapstructure:"debug"`
+	Name        string `yaml:"name"`
+	Environment string `yaml:"environment"`
+	Port        string `yaml:"port"`
+	Debug       bool   `yaml:"debug"`
 }
 
 type Config struct {
-	Logs      LogConfig      `mapstructure:"log"`
-	DB        PostgresConfig `mapstructure:"postgres"`
-	AppConfig AppConfig      `mapstructure:"app"`
+	Logs      LogConfig      `yaml:"log"`
+	DB        PostgresConfig `yaml:"postgres"`
+	AppConfig AppConfig      `yaml:"app"`
 }
 
 // LoadConfig - функция для загрузки конфигурации из файла
