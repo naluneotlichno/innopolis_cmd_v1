@@ -12,6 +12,9 @@ func PingHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	fmt.Fprintln(w, "pong")
+	if _, err := fmt.Fprintln(w, "pong"); err != nil {
+		http.Error(w, "Failed to create response", http.StatusInternalServerError)
+		return
+	}
 
 }

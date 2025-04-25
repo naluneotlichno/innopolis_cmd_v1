@@ -1,27 +1,34 @@
+version: "2"
 run:
-  timeout: 5m
   modules-download-mode: readonly
-
 linters:
   enable:
-    - gofmt
-    - goimports
-    - govet
-    - staticcheck
-    - typecheck
-    - errcheck
     - bodyclose
+    - copyloopvar
+    - durationcheck
+    - gocyclo
+    - gosec
+    - misspell
+    - mnd
     - noctx
     - unparam
     - wastedassign
-    - misspell
-    - gosec
-    - mnd
-    - gocyclo
-    - copyloopvar
-    - durationcheck
-
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
 issues:
-  exclude-use-default: false
   max-issues-per-linter: 0
   max-same-issues: 0
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
