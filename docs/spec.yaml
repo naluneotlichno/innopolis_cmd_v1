@@ -1,0 +1,398 @@
+openapi: 3.0.0
+info:
+  title: Админка сервиса с блоками-сообщениями
+  description: API для управления цепочками и блоками сообщений в сервисе.
+  version: 1.0.0
+servers:
+  - url: https://api.example.com
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    Chain:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Block'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [active, inactive, draft]
+    Block:
+      type: object
+      properties:
+        id:
+          type: integer
+        content:
+          type: string
+        type:
+          type: string
+          enum: [text, audio, video, image]
+        display_params:
+          $ref: '#/components/schemas/BlockDisplayParams'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    BlockDisplayParams:
+      type: object
+      properties:
+        order:
+          type: integer
+        width:
+          type: integer
+        height:
+          type: integer
+        position:
+          type: string
+          enum: [left, center, right]
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+paths:
+  /auth/login:
+    post:
+      summary: Авторизация пользователя
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      responses:
+        '200':
+          description: Успешная авторизация
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          description: Неверные учетные данные
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /chains:
+    get:
+      summary: Получить список цепочек сообщений
+      operationId: getChains
+      security:
+        - BasicAuth: []
+      parameters:
+        - name: sort_by
+          in: query
+          schema:
+            type: string
+            enum: [created_at, updated_at, name]
+        - name: sort_order
+          in: query
+          schema:
+            type: string
+            enum: [asc, desc]
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [active, inactive, draft]
+      responses:
+        '200':
+          description: Список цепочек сообщений
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chain'
+        '401':
+          description: Не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Создать новую цепочку сообщений
+      operationId: createChain
+      requestBody:
+        description: Цепочка сообщений для создания
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Chain'
+        required: true
+      responses:
+        '201':
+          description: Цепочка сообщений создана
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chain'
+  /chains/{chainId}:
+    get:
+      summary: Получить цепочку сообщений по ID
+      operationId: getChainById
+      parameters:
+        - name: chainId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Цепочка сообщений
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chain'
+    put:
+      summary: Обновить цепочку сообщений
+      operationId: updateChain
+      parameters:
+        - name: chainId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Обновлённые данные цепочки сообщений
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Chain'
+        required: true
+      responses:
+        '200':
+          description: Цепочка сообщений обновлена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chain'
+  /chains/{chainId}/blocks/{blockId}:
+    delete:
+      summary: Удалить блок из цепочки
+      operationId: removeBlockFromChain
+      security:
+        - BasicAuth: []
+      parameters:
+        - name: chainId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: blockId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Блок успешно удален из цепочки
+        '401':
+          description: Не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Цепочка или блок не найдены
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /blocks:
+    get:
+      summary: Получить список блоков сообщений
+      operationId: getBlocks
+      responses:
+        '200':
+          description: Список блоков сообщений
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Block'
+    post:
+      summary: Создать новый блок сообщения
+      operationId: createBlock
+      requestBody:
+        description: Блок сообщения для создания
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Block'
+        required: true
+      responses:
+        '201':
+          description: Блок сообщения создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Block'
+  /blocks/{blockId}:
+    get:
+      summary: Получить блок сообщения по ID
+      operationId: getBlockById
+      parameters:
+        - name: blockId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Блок сообщения
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Block'
+    delete:
+      summary: Удалить блок сообщения
+      operationId: deleteBlock
+      security:
+        - BasicAuth: []
+      parameters:
+        - name: blockId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Блок успешно удален
+        '401':
+          description: Не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Блок не найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Обновить блок сообщения
+      operationId: updateBlock
+      security:
+        - BasicAuth: []
+      parameters:
+        - name: blockId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Обновлённые данные блока сообщения
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Block'
+        required: true
+      responses:
+        '200':
+          description: Блок сообщения обновлён
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Block'
+        '401':
+          description: Не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Блок не найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /upload:
+    post:
+      summary: Загрузить файл
+      operationId: uploadFile
+      security:
+        - BasicAuth: []
+      requestBody:
+        required: true
+        content:
+          image/*:
+            schema:
+              type: string
+              format: binary
+          audio/*:
+            schema:
+              type: string
+              format: binary
+          video/*:
+            schema:
+              type: string
+              format: binary
+          text/*:
+            schema:
+              type: string
+              format: binary          
+      responses:
+        '201':
+          description: Файл успешно загружен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  file_id:
+                    type: string
+                    format: uuid
+                    description: Уникальный идентификатор загруженного файла
+        '400':
+          description: Неверный формат файла
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '413':
+          description: Файл слишком большой
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
