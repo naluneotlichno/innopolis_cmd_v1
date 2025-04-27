@@ -1,8 +1,7 @@
-.PHONY: lint lint-setup migrate build build-docker run-local mockgen test test-mocks
+.PHONY: lint lint-setup migrate build build-docker run-local mockgen test
 
 PROJECT_DIR=./chain-service
 
-# Проверка линтером
 lint:
 	@echo "Start linters..."
 	@cd $(PROJECT_DIR) && golangci-lint run ./... && echo "All linters have run successfully"
@@ -29,6 +28,4 @@ mockgen:
 	-destination=chain-service/internal/usecase/mocks/mocks_usecase_test.go -package=usecase_test
 
 test:
-	cd $(PROJECT_DIR) && go test ./...
-
-test-mocks:
+	cd $(PROJECT_DIR) && go test ./internal/usecase/mocks

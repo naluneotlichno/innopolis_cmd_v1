@@ -7,7 +7,9 @@ import (
 	gomock "go.uber.org/mock/gomock"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"github.com/szaluzhanskaya/Innopolis/chain-service/internal/entity"
+	"github.com/szaluzhanskaya/Innopolis/chain-service/internal/usecase"
 )
 
 func TestMockMessageChainRepository_CreateMessageChain_Success(t *testing.T) {
@@ -105,4 +107,60 @@ func TestMockMessageChainUsecase_CreateMessageChain_Error(t *testing.T) {
 	assert.Error(t, err)
 	assert.Nil(t, result)
 	assert.Equal(t, expectedError, err)
+}
+
+func TestMockMessageChainRepository_DeleteMessageChain_Success(t *testing.T) {
+	ctrl := gomock.NewController(t)
+
+	mockRepository := NewMockMessageChainRepository(ctrl)
+
+	uuid := "test string"
+
+	mockRepository.EXPECT().DeleteMessageChain(uuid).Return(nil)
+
+	actual := mockRepository.DeleteMessageChain(uuid)
+	require.NoError(t, actual)
+}
+
+func TestMockMessageChainRepository_DeleteMessageChain_Error(t *testing.T) {
+	ctrl := gomock.NewController(t)
+
+	mockRepository := NewMockMessageChainRepository(ctrl)
+
+	errForTest := errors.New("test error")
+	uuid := "test string"
+
+	mockRepository.EXPECT().DeleteMessageChain(uuid).Return(errForTest)
+
+	actual := mockRepository.DeleteMessageChain(uuid)
+	require.ErrorIs(t, actual, errForTest)
+}
+
+func TestMockMessageChainUsecase_DeleteMessageChain_Success(t *testing.T) {
+	ctrl := gomock.NewController(t)
+
+	mockRepository := NewMockMessageChainRepository(ctrl)
+	service := usecase.New(mockRepository)
+
+	uuid := "test string"
+
+	mockRepository.EXPECT().DeleteMessageChain(uuid).Return(nil)
+
+	actual := service.DeleteMessageChain(uuid)
+	require.NoError(t, actual)
+}
+
+func TestMockMessageChainUsecase_DeleteMessageChain_Error(t *testing.T) {
+	ctrl := gomock.NewController(t)
+
+	mockRepository := NewMockMessageChainRepository(ctrl)
+	service := usecase.New(mockRepository)
+
+	errForTest := errors.New("test error")
+	uuid := "test string"
+
+	mockRepository.EXPECT().DeleteMessageChain(uuid).Return(errForTest)
+
+	actual := service.DeleteMessageChain(uuid)
+	require.ErrorIs(t, actual, errForTest)
 }

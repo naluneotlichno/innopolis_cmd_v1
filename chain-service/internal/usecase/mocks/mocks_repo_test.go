@@ -53,3 +53,17 @@ func (mr *MockMessageChainRepositoryMockRecorder) CreateMessageChain(chain any) 
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateMessageChain", reflect.TypeOf((*MockMessageChainRepository)(nil).CreateMessageChain), chain)
 }
+
+// DeleteMessageChain mocks base method.
+func (m *MockMessageChainRepository) DeleteMessageChain(uuid string) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteMessageChain", uuid)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// DeleteMessageChain indicates an expected call of DeleteMessageChain.
+func (mr *MockMessageChainRepositoryMockRecorder) DeleteMessageChain(uuid any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteMessageChain", reflect.TypeOf((*MockMessageChainRepository)(nil).DeleteMessageChain), uuid)
+}
