@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"log"
 	"path/filepath"
-	"strings"
 
 	"github.com/google/uuid"                       // Генерация UUID
 	"github.com/minio/minio-go/v7"                 // Клиент MinIO
@@ -43,30 +42,15 @@ func UploadFileMinio(
 ) (string, string, error) {
 
 	// Проверка расширения файла
-	allowedExt := []string{".jpg", ".jpeg", ".png", ".mp4", ".mp3", ".wav"}
-	ext := strings.ToLower(filepath.Ext(fileName)) // Получаем расширение файла
-	valid := false
-
-	for _, allow := range allowedExt {
-		if ext == allow {
-			valid = true
-			break
-		}
-	}
-
-	if !valid {
-		return "", "", fmt.Errorf("❌ недопустимый тип файла: %s", ext)
-	}
-
-	const maxSize = 10 << 20 // 10 MB
-	if len(file) > maxSize {
-		return "", "", fmt.Errorf("❌ размер файла превышает %d байт", maxSize)
+	if err := ValidateFile(fileName, int64(len(file))); err != nil {
+		return "", "", fmt.Errorf("недопустимый тип файла: %s", err.Error())
 	}
 
 	// Генерация UUID для файла
 	storageUUID := uuid.New().String()
 
 	// Генерация пути для хранения файла в MinIO
+	ext := filepath.Ext(fileName)
 	objectName := fmt.Sprintf("media/%s%s", storageUUID, ext)
 
 	// Загрузка файла в MinIO
@@ -80,17 +64,17 @@ func UploadFileMinio(
 		})
 
 	if err != nil {
-		return "", "", fmt.Errorf("❌ не удалось загрузить файл в MinIO: %w", err)
+		return "", "", fmt.Errorf("не удалось загрузить файл в MinIO: %w", err)
 	}
 
 	// Сохраняем uuid и путь в базу данных
-	_, err = db.ExecContext(ctx, `
-		INSERT INTO storage (uuid, s3_path)
-		VALUES ($1, $2)
-	`, storageUUID, objectName)
-
-	if err != nil {
-		return "", "", fmt.Errorf("❌ не удалось записать в БД: %w", err)
+	if err := SaveFileInfo(ctx, db, storageUUID, objectName); err != nil {
+		// Откат: удаляем файл из MinIO
+		removeErr := client.RemoveObject(ctx, cfg.BucketName, objectName, minio.RemoveObjectOptions{})
+		if removeErr != nil {
+			log.Printf("Не удалось удалить файл из MinIO после ошибки БД: %v", removeErr)
+		}
+		return "", "", err
 	}
 
 	log.Printf("Файл %s успешно загружен как %s", fileName, objectName)
