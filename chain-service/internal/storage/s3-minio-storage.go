@@ -1,9 +1,10 @@
 package storage
 
 import (
-	"bytes"        // Для создания io.Reader из []byte
-	"context"      // Контекст для отмены операций
-	"database/sql" // Работа с PostgreSQL
+	"bytes"   // Для создания io.Reader из []byte
+	"context" // Контекст для отмены операций
+
+	// Работа с PostgreSQL
 	"fmt"
 	"log"
 	"path/filepath"
@@ -22,7 +23,7 @@ type MinioConfig struct {
 	UseSSL          bool   // Использовать SSL
 }
 
-// Создание клиета MinIO
+// Создание клиента MinIO
 func InitMinio(cfg MinioConfig) (*minio.Client, error) {
 	return minio.New(cfg.Endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(cfg.AccessKeyID, cfg.SecretAccessKey, ""), // Указываем ключи
@@ -31,10 +32,10 @@ func InitMinio(cfg MinioConfig) (*minio.Client, error) {
 	})
 }
 
-// Метод загрузки файла в MinIO и записи его в базу данных
+// Метод загрузки файла в MinIO и записи его в базу данных через repo слой
 func UploadFileMinio(
 	ctx context.Context, // Контекст для обработки запросов -- таймауты, отмена, и т. д.
-	db *sql.DB, // База данных
+	repo StorageRepository, // Репозиторий для работы с таблицей storage
 	client *minio.Client, // Клиент MinIO
 	cfg MinioConfig, // Конфигурация MinIO
 	fileName string, // Имя файла
@@ -67,8 +68,8 @@ func UploadFileMinio(
 		return "", "", fmt.Errorf("не удалось загрузить файл в MinIO: %w", err)
 	}
 
-	// Сохраняем uuid и путь в базу данных
-	if err := SaveFileInfo(ctx, db, storageUUID, objectName); err != nil {
+	// Сохраняем uuid и путь в базу данных через repo слой
+	if err := repo.SaveFileInfo(ctx, storageUUID, objectName); err != nil {
 		// Откат: удаляем файл из MinIO
 		removeErr := client.RemoveObject(ctx, cfg.BucketName, objectName, minio.RemoveObjectOptions{})
 		if removeErr != nil {
@@ -81,3 +82,4 @@ func UploadFileMinio(
 
 	return storageUUID, objectName, nil
 }
+
