@@ -2,29 +2,29 @@ package storage
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
+
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 // StorageRepository - интерфейс для работы с таблицей storage
-// (можно мокать для тестов)
 type StorageRepository interface {
 	SaveFileInfo(ctx context.Context, uuid, s3Path string) error
 }
 
-// PostgresStorageRepository - реализация StorageRepository для PostgreSQL
-// (db внедряется через конструктор)
+// PostgresStorageRepository - реализация StorageRepository для PostgreSQL с использованием pgx
 type PostgresStorageRepository struct {
-	db *sql.DB
+	db *pgxpool.Pool
 }
 
-func NewPostgresStorageRepository(db *sql.DB) *PostgresStorageRepository {
+// NewPostgresStorageRepository создает новый экземпляр PostgresStorageRepository
+func NewPostgresStorageRepository(db *pgxpool.Pool) *PostgresStorageRepository {
 	return &PostgresStorageRepository{db: db}
 }
 
 // SaveFileInfo сохраняет информацию о файле в базу данных
 func (r *PostgresStorageRepository) SaveFileInfo(ctx context.Context, uuid, s3Path string) error {
-	_, err := r.db.ExecContext(ctx, `
+	_, err := r.db.Exec(ctx, `
 		INSERT INTO storage (uuid, s3_path)
 		VALUES ($1, $2)
 	`, uuid, s3Path)
