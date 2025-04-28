@@ -1,11 +1,10 @@
 package postgres
 
 import (
-	"database/sql"
+	"context"
 	"log"
 
 	"github.com/szaluzhanskaya/Innopolis/chain-service/internal/entity"
-	"github.com/szaluzhanskaya/Innopolis/chain-service/internal/repo"
 )
 
 const createMessageChainQuery = `
@@ -13,17 +12,9 @@ INSERT INTO message_chains (user_id, created_at, updated_at, status, title)
 VALUES ($1, $2, $3, $4, $5)
 RETURNING uuid`
 
-type MessageChainPostgres struct {
-	DB *sql.DB
-}
-
-func New(db *sql.DB) repo.MessageChainRepository {
-	return &MessageChainPostgres{DB: db}
-}
-
 func (r *MessageChainPostgres) CreateMessageChain(chain *entity.MessageChain) error {
 
-	tx, err := r.DB.Begin()
+	tx, err := r.DB.Begin(context.Background())
 	if err != nil {
 		log.Printf("Failed to begin transaction: %v", err)
 		return err
@@ -31,7 +22,7 @@ func (r *MessageChainPostgres) CreateMessageChain(chain *entity.MessageChain) er
 
 	defer func() {
 		if err := recover(); err != nil {
-			if err = tx.Rollback(); err != nil {
+			if err = tx.Rollback(context.Background()); err != nil {
 				log.Printf("Transaction rollback failed: %v", err)
 			}
 			log.Printf("Transaction rolled back because panic: %v", err)
@@ -39,6 +30,7 @@ func (r *MessageChainPostgres) CreateMessageChain(chain *entity.MessageChain) er
 	}()
 
 	err = tx.QueryRow(
+		context.Background(),
 		createMessageChainQuery,
 		chain.UserID,
 		chain.CreatedAt,
@@ -48,14 +40,14 @@ func (r *MessageChainPostgres) CreateMessageChain(chain *entity.MessageChain) er
 	).Scan(&chain.UUID)
 
 	if err != nil {
-		if err = tx.Rollback(); err != nil {
+		if err = tx.Rollback(context.Background()); err != nil {
 			log.Printf("Transaction rollback failed: %v", err)
 		}
 		log.Printf("Failed to create message chain: %v", err)
 		return err
 	}
 
-	if err := tx.Commit(); err != nil {
+	if err := tx.Commit(context.Background()); err != nil {
 		log.Printf("Failed to commit transaction: %v", err)
 		return err
 	}

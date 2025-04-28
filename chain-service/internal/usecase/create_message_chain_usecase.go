@@ -9,6 +9,7 @@ import (
 
 type MessageChainUsecase interface {
 	CreateMessageChain(userID int, title string) (*entity.MessageChain, error)
+	DeleteMessageChain(uuid string) error
 }
 
 type messageChainUsecase struct {
@@ -35,4 +36,8 @@ func (uc *messageChainUsecase) CreateMessageChain(userID int, title string) (*en
 	}
 
 	return chain, nil
+}
+
+func (uc *messageChainUsecase) DeleteMessageChain(uuid string) error {
+	return uc.repo.DeleteMessageChain(uuid)
 }

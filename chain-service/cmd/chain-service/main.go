@@ -1,19 +1,19 @@
 package main
 
 import (
-	"database/sql"
+	"context"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 
-	_ "github.com/lib/pq"
-
-	//"github.com/go-delve/delve/pkg/config"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/joho/godotenv"
 	"github.com/szaluzhanskaya/Innopolis/chain-service/config"
 	v1 "github.com/szaluzhanskaya/Innopolis/chain-service/internal/controller/http"
+	"github.com/szaluzhanskaya/Innopolis/chain-service/internal/repo/postgres"
 	"github.com/szaluzhanskaya/Innopolis/chain-service/internal/storage"
+	"github.com/szaluzhanskaya/Innopolis/chain-service/internal/usecase"
 )
 
 // main - точка входа в приложение chain-service.
@@ -24,21 +24,19 @@ func main() {
 	dir, _ := os.Getwd()
 	log.Printf("Текущая директория: %s", dir)
 
-	// Загрузка переменных окружения из .env файла в текущей директории
+	// Загрузка переменных окружения из .env файла
 	if err := godotenv.Load(".env"); err != nil {
 		log.Printf("Предупреждение: не удалось загрузить .env файл: %v", err)
 	}
 
-	// Определение окружения запуска приложения (local, dev, prod)
-	// По умолчанию используется local, если переменная не задана
+	// Определение окружения запуска приложения
 	env := os.Getenv("APP_ENVIRONMENT")
 	if env == "" {
 		env = "local"
 		log.Printf("APP_ENVIRONMENT не задан, используется значение по умолчанию: %s", env)
 	}
 
-	// Загрузка конфигурации в зависимости от окружения
-	// Конфигурация содержит настройки для БД, MinIO и самого приложения
+	// Загрузка конфигурации
 	log.Printf("Загрузка конфигурации для окружения: %s", env)
 	cfg, err := config.LoadConfig(env)
 	if err != nil {
@@ -46,47 +44,24 @@ func main() {
 	}
 	log.Printf("Конфигурация успешно загружена")
 
-	// Проверка параметров подключения к БД
-	log.Printf("Параметры подключения к PostgreSQL: host=%s, port=%d, username=%s, dbname=%s",
-		cfg.DB.Host, cfg.DB.Port, cfg.DB.Username, cfg.DB.DBname)
-
 	// Инициализация соединения с PostgreSQL
-	// Используется для хранения метаданных о загруженных файлах
-	dsn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		cfg.DB.Host,
-		cfg.DB.Port,
+	connURL := fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable",
 		cfg.DB.Username,
 		cfg.DB.Password,
+		cfg.DB.Host,
+		cfg.DB.Port,
 		cfg.DB.DBname,
 	)
-	log.Printf("Строка подключения к PostgreSQL: %s", dsn)
 
-	var db *sql.DB
-	var repo storage.StorageRepository
-
-	db, err = sql.Open("postgres", dsn)
+	dbPool, err := initDb(connURL)
 	if err != nil {
-		log.Printf("ОШИБКА: Не удалось инициализировать подключение к PostgreSQL: %v", err)
-		log.Printf("ВНИМАНИЕ: Продолжаем без PostgreSQL, некоторые функции будут недоступны")
-		// Создаем заглушку для репозитория
-		repo = &storage.MockStorageRepository{}
-	} else {
-		// Проверяем соединение
-		err = db.Ping()
-		if err != nil {
-			log.Printf("ОШИБКА: PostgreSQL недоступен: %v", err)
-			log.Printf("Проверьте, что сервер PostgreSQL запущен и доступен по адресу %s:%d", cfg.DB.Host, cfg.DB.Port)
-			log.Printf("ВНИМАНИЕ: Продолжаем без PostgreSQL, некоторые функции будут недоступны")
-			db.Close()
-			// Создаем заглушку для репозитория
-			repo = &storage.MockStorageRepository{}
-		} else {
-			log.Println("Успешное подключение к PostgreSQL")
-			// Создание репозитория для работы с базой данных
-			repo = storage.NewPostgresStorageRepository(db)
-			defer db.Close()
-		}
+		log.Fatalf("Ошибка подключения к базе данных: %v", err)
 	}
+	defer dbPool.Close()
+
+	// Инициализация репозиториев
+	messageChainRepo := postgres.New(dbPool)
+	storageRepo := storage.NewPostgresStorageRepository(dbPool)
 
 	// Инициализация клиента MinIO для хранения файлов
 	var minioClient storage.MinioClient
@@ -94,26 +69,33 @@ func main() {
 	if err != nil {
 		log.Printf("ОШИБКА: Не удалось инициализировать клиент MinIO: %v", err)
 		log.Printf("ВНИМАНИЕ: Продолжаем без MinIO, некоторые функции будут недоступны")
-		// Создаем заглушку для MinIO клиента
 		minioClient = &storage.MockMinioClient{}
 	} else {
 		log.Println("Успешное подключение к MinIO")
-		// Оборачиваем клиент MinIO в наш адаптер
 		minioClient = storage.NewMinioClientAdapter(tmpMinioClient)
 	}
 
-	// Создание контроллера для обработки HTTP-запросов, связанных с хранилищем
-	storageController := v1.NewStorageController(repo, minioClient)
+	// Создание сервисов и обработчиков
+	service := usecase.New(messageChainRepo)
+	handler := v1.New(service)
+	storageController := v1.NewStorageController(storageRepo, minioClient)
 
 	// Регистрация HTTP-обработчиков
-	// /ping - для проверки доступности сервиса
 	http.HandleFunc("/ping", v1.PingHandler)
-
-	// /upload - для загрузки файлов в хранилище
+	http.HandleFunc("/delete-chain/{uuid}", handler.DeleteMessageChain)
+	http.HandleFunc("/create-chain", handler.CreateMessageChain)
 	http.HandleFunc("/upload", storageController.UploadHandler)
 
-	// Запуск HTTP-сервера на порту, указанном в конфигурации
+	// Запуск HTTP-сервера
 	serverAddr := ":" + cfg.AppConfig.Port
 	log.Printf("Запуск HTTP-сервера на порту %s (адрес %s)...", cfg.AppConfig.Port, serverAddr)
 	log.Fatal(http.ListenAndServe(serverAddr, nil))
+}
+
+func initDb(connURL string) (*pgxpool.Pool, error) {
+	dbPool, err := pgxpool.New(context.Background(), connURL)
+	if err != nil {
+		return nil, err
+	}
+	return dbPool, nil
 }

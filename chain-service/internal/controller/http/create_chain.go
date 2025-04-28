@@ -3,19 +3,9 @@ package http
 import (
 	"encoding/json"
 	"net/http"
-
-	"github.com/szaluzhanskaya/Innopolis/chain-service/internal/usecase"
 )
 
-type MessageChainHandler struct {
-	usecase usecase.MessageChainUsecase
-}
-
-func New(usecase usecase.MessageChainUsecase) *MessageChainHandler {
-	return &MessageChainHandler{usecase: usecase}
-}
-
-func (c *MessageChainHandler) CreateMessageChain(w http.ResponseWriter, r *http.Request) {
+func (h *MessageChainHandler) CreateMessageChain(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -28,7 +18,7 @@ func (c *MessageChainHandler) CreateMessageChain(w http.ResponseWriter, r *http.
 		return
 	}
 
-	chain, err := c.usecase.CreateMessageChain(req.UserID, req.Title)
+	chain, err := h.service.CreateMessageChain(req.UserID, req.Title)
 	if err != nil {
 		http.Error(w, "Failed to create message chain", http.StatusInternalServerError)
 		return

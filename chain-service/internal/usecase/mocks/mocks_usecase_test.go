@@ -54,3 +54,17 @@ func (mr *MockMessageChainUsecaseMockRecorder) CreateMessageChain(userID, title 
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateMessageChain", reflect.TypeOf((*MockMessageChainUsecase)(nil).CreateMessageChain), userID, title)
 }
+
+// DeleteMessageChain mocks base method.
+func (m *MockMessageChainUsecase) DeleteMessageChain(uuid string) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteMessageChain", uuid)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// DeleteMessageChain indicates an expected call of DeleteMessageChain.
+func (mr *MockMessageChainUsecaseMockRecorder) DeleteMessageChain(uuid any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteMessageChain", reflect.TypeOf((*MockMessageChainUsecase)(nil).DeleteMessageChain), uuid)
+}
