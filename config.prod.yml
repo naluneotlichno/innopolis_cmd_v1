@@ -15,3 +15,11 @@ postgres:
   user: "username"
   password: "user_password"
   dbname: "db_name"
+
+minio:
+  endpoint: "prod-minio.example.com:9000"
+  accessKeyID: ""
+  secretAccessKey: ""
+  bucketName: "prod-bucket"
+  region: "us-east-1"
+  useSSL: true

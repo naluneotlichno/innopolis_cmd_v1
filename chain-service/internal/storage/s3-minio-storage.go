@@ -12,19 +12,11 @@ import (
 	"github.com/google/uuid"                       // Генерация UUID
 	"github.com/minio/minio-go/v7"                 // Клиент MinIO
 	"github.com/minio/minio-go/v7/pkg/credentials" // Учетные данные MinIO
+	"github.com/szaluzhanskaya/Innopolis/chain-service/config"
 )
 
-type MinioConfig struct {
-	Endpoint        string // Адрес сервера
-	AccessKeyID     string // Логин
-	SecretAccessKey string // Пароль
-	BucketName      string // Имя кнтейнера для файлов
-	Region          string // Регион
-	UseSSL          bool   // Использовать SSL
-}
-
 // Создание клиента MinIO
-func InitMinio(cfg MinioConfig) (*minio.Client, error) {
+func InitMinio(cfg config.MinioConfig) (*minio.Client, error) {
 	return minio.New(cfg.Endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(cfg.AccessKeyID, cfg.SecretAccessKey, ""), // Указываем ключи
 		Secure: cfg.UseSSL,                                                        // Включаем или выключаем SSL
@@ -37,7 +29,7 @@ func UploadFileMinio(
 	ctx context.Context, // Контекст для обработки запросов -- таймауты, отмена, и т. д.
 	repo StorageRepository, // Репозиторий для работы с таблицей storage
 	client *minio.Client, // Клиент MinIO
-	cfg MinioConfig, // Конфигурация MinIO
+	cfg config.MinioConfig, // Конфигурация MinIO
 	fileName string, // Имя файла
 	file []byte, // Файл для загрузки
 ) (string, string, error) {
@@ -82,4 +74,3 @@ func UploadFileMinio(
 
 	return storageUUID, objectName, nil
 }
-

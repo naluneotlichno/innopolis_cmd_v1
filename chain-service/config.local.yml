@@ -7,19 +7,19 @@ app:
 log:
   level: "debug"
   style: "yaml" # формат логов - yaml
-  file: "" #test укажите путь к файлу для хранения логов
+  file: "" # укажите путь к файлу для хранения логов
 
 postgres:
   host: "localhost"
   port: 5432
-  username: "username"
-  password: "user_password"
-  dbname: "db_name"
+  username: "postgres"
+  password: "postgres"
+  dbname: "innopolis"
 
 minio:
   endpoint: "localhost:9000"
   accessKeyID: "minioadmin"
   secretAccessKey: "minioadmin"
-  bucketName: "your-bucket"
+  bucketName: "innopolis"
   region: "us-east-1"
-  useSSL: false
+  useSSL: false 

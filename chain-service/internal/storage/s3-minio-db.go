@@ -6,9 +6,6 @@ import (
 	"fmt"
 )
 
-// StorageRepository определяет интерфейс для работы с таблицей storage
-//go:generate mockgen -source=s3-minio-db.go -destination=s3-minio-db_mock.go -package=storage
-
 // StorageRepository - интерфейс для работы с таблицей storage
 // (можно мокать для тестов)
 type StorageRepository interface {
