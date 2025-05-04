@@ -1,0 +1,4 @@
+bot: 
+  update_timeout: 60
+  language: ru
+  

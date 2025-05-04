@@ -107,3 +107,4 @@ func LoadConfig(env string) (*Config, error) {
 
 	return &cfg, nil
 }
+

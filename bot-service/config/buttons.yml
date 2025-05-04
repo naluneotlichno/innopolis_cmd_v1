@@ -1,0 +1,33 @@
+buttons:
+  ru:
+    main:
+      - ["start_tour", "show_routes"]
+      - ["change_language"]
+    excursion:
+      - ["back", "next"]
+      - ["menu"]
+  en:
+    main:
+      - ["start_tour", "show_routes"]
+      - ["change_language"]
+    excursion:
+      - ["back", "next"]
+      - ["menu"]
+
+texts:
+  ru: 
+    start_message: "Привет! 👋 Я бот-помощник Иннополиса. Выберите действие:"
+    start_tour: "🚀 Начать экскурсию"
+    show_routes: "📋 Показать маршруты"
+    back: "⬅️ Назад"
+    next: "➡️ Вперёд"
+    menu: "🏠 Меню"
+    change_language: "🌐 Язык Language"
+  en:
+    start_message: "Hello! 👋 I am a bot-helper of Innopolis. Choose an action:"
+    start_tour: "🚀 Start the tour"
+    show_routes: "📋 Show routes"
+    back: "⬅️ Back"
+    next: "➡️ Next"
+    menu: "🏠 Menu"
+    change_language: "🌐 language"

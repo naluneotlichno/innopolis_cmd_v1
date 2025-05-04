@@ -5,7 +5,14 @@ import (
 	"net/http"
 )
 
+type req struct {
+	UserID int    `json:"user_id"`
+	Title  string `json:"title"`
+}
+
 func (h *MessageChainHandler) CreateMessageChain(w http.ResponseWriter, r *http.Request) {
+
+	var req req
 
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -32,7 +39,3 @@ func (h *MessageChainHandler) CreateMessageChain(w http.ResponseWriter, r *http.
 	}
 }
 
-var req struct {
-	UserID int    `json:"user_id"`
-	Title  string `json:"title"`
-}
