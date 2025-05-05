@@ -24,7 +24,7 @@ texts:
     menu: "🏠 Меню"
     change_language: "🌐 Язык Language"
 
-    start_tour_text: "Добро пожаловать на экскурсию по Иннополису!\n Мы начнём с главной площади."
+    start_tour_text: "Добро пожаловать на экскурсию по Иннополису!\nМы начнём с главной площади."
     show_routes_text: "Вот доступные маршруты:\n\n1️⃣ Технологический маршрут\n2️⃣ Архитектурный маршрут\n3️⃣ Кампус и быт 👨‍🎓"
     menu_text: "Вы вернулись в главное меню. Выберите действие:"
     excursion_step: "🧭 Продолжим экскурсию!"
@@ -38,7 +38,7 @@ texts:
     menu: "🏠 Menu"
     change_language: "🌐 language"
 
-    start_tour_text: "Welcome to the Innopolis tour! 🏙️ We'll start from the main square."
+    start_tour_text: "Welcome to the Innopolis tour!\nWe'll start from the main square."
     show_routes_text: "Available routes:\n\n1️⃣ Technology\n2️⃣ Architecture\n3️⃣ Campus & Student life 👨‍🎓"
     menu_text: "You're back to the main menu. Choose an action:"
     excursion_step: "🧭 Let's continue the tour!"

@@ -120,3 +120,31 @@
 {"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:38:08+05:00","message":"Нажата кнопка"}
 {"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:38:11+05:00","message":"Нажата кнопка"}
 {"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:38:13+05:00","message":"Нажата кнопка"}
+{"level":"info","stage":"init","action":"create_bot_api","time":"2025-05-06T01:06:13+05:00","message":"Создание экземпляра Telegram Bot API"}
+{"level":"info","stage":"init","action":"load_config","config_path":"./config/buttons.yml","time":"2025-05-06T01:06:13+05:00","message":"Загрузка конфигурации кнопок"}
+{"level":"info","stage":"init","action":"ready","time":"2025-05-06T01:06:13+05:00","message":"BotService успешно инициализирован"}
+{"level":"info","time":"2025-05-06T01:06:13+05:00","message":"Бот запущен и готов к работе!"}
+{"level":"info","stage":"start","time":"2025-05-06T01:06:13+05:00","message":"Бот начал получать обновления"}
+{"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:06:19+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:06:21+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:06:23+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:06:25+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:06:26+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"show_routes","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:06:28+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"show_routes","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:06:32+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:06:39+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"back","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:06:41+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:06:43+05:00","message":"Нажата кнопка"}
+{"level":"info","stage":"init","action":"create_bot_api","time":"2025-05-06T01:08:11+05:00","message":"Создание экземпляра Telegram Bot API"}
+{"level":"info","stage":"init","action":"load_config","config_path":"./config/buttons.yml","time":"2025-05-06T01:08:11+05:00","message":"Загрузка конфигурации кнопок"}
+{"level":"info","stage":"init","action":"ready","time":"2025-05-06T01:08:11+05:00","message":"BotService успешно инициализирован"}
+{"level":"info","time":"2025-05-06T01:08:11+05:00","message":"Бот запущен и готов к работе!"}
+{"level":"info","stage":"start","time":"2025-05-06T01:08:11+05:00","message":"Бот начал получать обновления"}
+{"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:08:11+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:08:12+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"show_routes","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:08:12+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"show_routes","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:08:14+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:08:16+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"back","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:08:20+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:08:22+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"show_routes","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-06T01:08:26+05:00","message":"Нажата кнопка"}
