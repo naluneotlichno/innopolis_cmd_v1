@@ -153,11 +153,11 @@ func (s *BotService) handleCallback(cb *tgbotapi.CallbackQuery) {
 
 	switch cb.Data {
 	case "start_tour":
-		text = "Добро пожаловать на экскурсию по Иннополису! 🏛️"
+		text = s.cfg.Texts[lang]["start_tour_text"]
 		keyboard = s.createKeyboard(lang, "excursion")
 
 	case "show_routes":
-		text = "Вот список доступных маршрутов 🗺️"
+		text = s.cfg.Texts[lang]["show_routes_text"]
 		keyboard = s.createKeyboard(lang, "main")
 
 	case "change_language":
@@ -176,7 +176,6 @@ func (s *BotService) handleCallback(cb *tgbotapi.CallbackQuery) {
 		keyboard = s.createKeyboard(lang, "main")
 
 	case "back", "next":
-		text = "Навигация по экскурсии..."
 		keyboard = s.createKeyboard(lang, "excursion")
 	}
 

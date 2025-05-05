@@ -1,0 +1,122 @@
+{"level":"info","stage":"init","action":"load_config","config_path":"./config/buttons.yaml","time":"2025-05-05T19:29:12+05:00","message":"Загрузка конфигурации"}
+{"level":"error","stage":"init","action":"load_config","config_path":"./config/buttons.yaml","error":"Config File \"buttons\" Not Found in \"[C:\\\\Users\\\\user\\\\Desktop\\\\GO\\\\INNOPOLISS_ALL_VERSIONS\\\\innopolis_cmd_v1\\\\bot-service\\\\config\\\\buttons.yaml]\"","time":"2025-05-05T19:29:12+05:00","message":"Ошибка загрузки конфигурации"}
+{"level":"fatal","error":"Config File \"buttons\" Not Found in \"[C:\\\\Users\\\\user\\\\Desktop\\\\GO\\\\INNOPOLISS_ALL_VERSIONS\\\\innopolis_cmd_v1\\\\bot-service\\\\config\\\\buttons.yaml]\"","time":"2025-05-05T19:29:12+05:00","message":"Ошибка создания сервиса бота"}
+{"level":"info","stage":"init","action":"load_config","config_path":"./config/buttons.yaml","time":"2025-05-05T19:30:46+05:00","message":"Загрузка конфигурации"}
+{"level":"info","time":"2025-05-05T19:30:47+05:00","message":"Бот запущен и готов к работе!"}
+{"level":"info","stage":"start","time":"2025-05-05T19:30:47+05:00","message":"Бот начал получать обновления"}
+{"level":"info","time":"2025-05-05T19:34:43+05:00","message":"Бот запущен и готов к работе!"}
+{"level":"info","time":"2025-05-05T19:34:43+05:00","message":"Бот начал получать обновления"}
+{"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:34:57+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:35:00+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:35:02+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:35:05+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:35:08+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"back","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:35:19+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:35:22+05:00","message":"Нажата кнопка"}
+{"level":"info","time":"2025-05-05T19:36:18+05:00","message":"Бот запущен и готов к работе!"}
+{"level":"info","time":"2025-05-05T19:36:18+05:00","message":"Бот начал получать обновления"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:36:18+05:00","message":"Нажата кнопка"}
+{"level":"error","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T19:36:18+05:00","message":"Ошибка отправки сообщения"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:36:20+05:00","message":"Нажата кнопка"}
+{"level":"error","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T19:36:20+05:00","message":"Ошибка отправки сообщения"}
+{"level":"info","action":"back","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:36:23+05:00","message":"Нажата кнопка"}
+{"level":"error","chat_id":1606795874,"error":"Bad Request: field \"inline_keyboard\" must be of type Array","time":"2025-05-05T19:36:23+05:00","message":"Ошибка отправки сообщения"}
+{"level":"info","stage":"init","action":"load_config","config_path":"./config/buttons.yaml","time":"2025-05-05T19:38:56+05:00","message":"Загрузка конфигурации"}
+{"level":"info","time":"2025-05-05T19:38:56+05:00","message":"Бот запущен и готов к работе!"}
+{"level":"info","time":"2025-05-05T19:38:56+05:00","message":"Бот начал получать обновления"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:39:05+05:00","message":"Нажата кнопка"}
+{"level":"error","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T19:39:05+05:00","message":"Ошибка отправки сообщения"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:39:08+05:00","message":"Нажата кнопка"}
+{"level":"error","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T19:39:08+05:00","message":"Ошибка отправки сообщения"}
+{"level":"info","action":"back","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:39:09+05:00","message":"Нажата кнопка"}
+{"level":"error","chat_id":1606795874,"error":"Bad Request: field \"inline_keyboard\" must be of type Array","time":"2025-05-05T19:39:10+05:00","message":"Ошибка отправки сообщения"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T19:39:11+05:00","message":"Нажата кнопка"}
+{"level":"error","chat_id":1606795874,"error":"Bad Request: field \"inline_keyboard\" must be of type Array","time":"2025-05-05T19:39:11+05:00","message":"Ошибка отправки сообщения"}
+{"level":"info","stage":"init","action":"create_bot_api","time":"2025-05-05T19:43:46+05:00","message":"Создание экземпляра Telegram Bot API"}
+{"level":"info","stage":"init","action":"load_config","config_path":"./config/buttons.yml","time":"2025-05-05T19:43:47+05:00","message":"Загрузка конфигурации кнопок"}
+{"level":"info","stage":"init","action":"ready","time":"2025-05-05T19:43:47+05:00","message":"BotService успешно инициализирован"}
+{"level":"info","time":"2025-05-05T19:43:47+05:00","message":"Бот запущен и готов к работе!"}
+{"level":"info","stage":"start","time":"2025-05-05T19:43:47+05:00","message":"Бот начал получать обновления"}
+{"level":"info","stage":"init","action":"create_bot_api","time":"2025-05-05T22:49:40+05:00","message":"Создание экземпляра Telegram Bot API"}
+{"level":"info","stage":"init","action":"load_config","config_path":"./config/buttons.yml","time":"2025-05-05T22:49:40+05:00","message":"Загрузка конфигурации кнопок"}
+{"level":"info","stage":"init","action":"ready","time":"2025-05-05T22:49:40+05:00","message":"BotService успешно инициализирован"}
+{"level":"info","time":"2025-05-05T22:49:40+05:00","message":"Бот запущен и готов к работе!"}
+{"level":"info","stage":"start","time":"2025-05-05T22:49:40+05:00","message":"Бот начал получать обновления"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T22:49:51+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T22:49:51+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T22:49:54+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T22:49:55+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"back","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T22:49:56+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: field \"inline_keyboard\" must be of type Array","time":"2025-05-05T22:49:56+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T22:49:58+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: field \"inline_keyboard\" must be of type Array","time":"2025-05-05T22:49:58+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T22:50:00+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: field \"inline_keyboard\" must be of type Array","time":"2025-05-05T22:50:00+05:00","message":"Ошибка отправки"}
+{"level":"info","stage":"init","action":"create_bot_api","time":"2025-05-05T23:16:48+05:00","message":"Создание экземпляра Telegram Bot API"}
+{"level":"info","stage":"init","action":"load_config","config_path":"./config/buttons.yml","time":"2025-05-05T23:16:48+05:00","message":"Загрузка конфигурации кнопок"}
+{"level":"info","stage":"init","action":"ready","time":"2025-05-05T23:16:48+05:00","message":"BotService успешно инициализирован"}
+{"level":"info","time":"2025-05-05T23:16:48+05:00","message":"Бот запущен и готов к работе!"}
+{"level":"info","stage":"start","time":"2025-05-05T23:16:48+05:00","message":"Бот начал получать обновления"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:16:51+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:16:52+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"back","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:16:55+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:16:55+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:16:57+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:16:57+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:16:58+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:16:58+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"back","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:16:59+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:16:59+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:17:02+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:17:02+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:17:03+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:17:03+05:00","message":"Ошибка отправки"}
+{"level":"info","stage":"init","action":"create_bot_api","time":"2025-05-05T23:31:22+05:00","message":"Создание экземпляра Telegram Bot API"}
+{"level":"info","stage":"init","action":"load_config","config_path":"./config/buttons.yml","time":"2025-05-05T23:31:22+05:00","message":"Загрузка конфигурации кнопок"}
+{"level":"info","stage":"init","action":"ready","time":"2025-05-05T23:31:22+05:00","message":"BotService успешно инициализирован"}
+{"level":"info","time":"2025-05-05T23:31:22+05:00","message":"Бот запущен и готов к работе!"}
+{"level":"info","stage":"start","time":"2025-05-05T23:31:22+05:00","message":"Бот начал получать обновления"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:31:23+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:31:24+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"back","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:31:26+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:31:26+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"back","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:31:28+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:31:28+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:31:29+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:31:30+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:31:31+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:31:34+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:31:38+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"show_routes","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:31:42+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:31:46+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:31:51+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:31:54+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:31:57+05:00","message":"Нажата кнопка"}
+{"level":"info","stage":"init","action":"create_bot_api","time":"2025-05-05T23:37:13+05:00","message":"Создание экземпляра Telegram Bot API"}
+{"level":"info","stage":"init","action":"load_config","config_path":"./config/buttons.yml","time":"2025-05-05T23:37:13+05:00","message":"Загрузка конфигурации кнопок"}
+{"level":"info","stage":"init","action":"ready","time":"2025-05-05T23:37:13+05:00","message":"BotService успешно инициализирован"}
+{"level":"info","time":"2025-05-05T23:37:13+05:00","message":"Бот запущен и готов к работе!"}
+{"level":"info","stage":"start","time":"2025-05-05T23:37:13+05:00","message":"Бот начал получать обновления"}
+{"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:13+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:14+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"back","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:17+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:37:17+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:19+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:37:19+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:21+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:25+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:27+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:29+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"next","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:37+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:37:37+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:39+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"show_routes","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:41+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:56+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"show_routes","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:37:58+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:38:01+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"back","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:38:04+05:00","message":"Нажата кнопка"}
+{"level":"error","stage":"send message","chat_id":1606795874,"error":"Bad Request: message text is empty","time":"2025-05-05T23:38:05+05:00","message":"Ошибка отправки"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:38:06+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"start_tour","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:38:08+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"menu","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:38:11+05:00","message":"Нажата кнопка"}
+{"level":"info","action":"change_language","username":"Naluneotlichno","chat_id":1606795874,"time":"2025-05-05T23:38:13+05:00","message":"Нажата кнопка"}
